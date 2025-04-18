@@ -1,12 +1,19 @@
 "use client";
+import { Navbar as NavbarDataType } from "@/components/types/allFrontendDataType";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type NavbarProps = {
+  data?: NavbarDataType;
+};
+
+const Navbar: React.FC<NavbarProps> = ({ data }) => {
+  console.log(data);
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -35,6 +42,8 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  if (!data) return null;
+
   return (
     <div className="bg-[#D9D9D9] sticky top-0 z-50 w-full">
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
@@ -42,7 +51,8 @@ const Navbar = () => {
         <div>
           <Link href="/">
             <Image
-              src="/assets/logo.png"
+              // src="/assets/logo.png"
+              src={data?.logo?.startsWith("http") ? data?.logo : `/assets/logo.png`}
               alt="nav logo"
               width={235}
               height={90}
@@ -55,16 +65,32 @@ const Navbar = () => {
         <div className="hidden md:block">
           <ul className="flex items-center gap-4 lg:gap-[54px]">
             <li className="text-sm lg:text-base font-semibold text-black leading-normal cursor-pointer">
-              <Link href="#home">Home</Link>
+              {/* <Link href="#home"> */}
+              <Link href={data?.itemlink1}>
+              {/* Home */} 
+              {data?.itemname1}
+              </Link>
             </li>
             <li className="text-sm lg:text-base font-semibold text-black leading-normal cursor-pointer">
-              <Link href="#about_us">About Us</Link>
+              {/* <Link href="#about_us">  */}
+              <Link href={data?.itemname2}> 
+              {/* About Us */}
+              {data?.itemname2}
+              </Link>
             </li>
             <li className="text-sm lg:text-base font-semibold text-black leading-normal cursor-pointer">
-              <Link href="#services">Services</Link>
+              {/* <Link href="#services"> */}
+              <Link href={data?.itemlink3}>
+              {/* Services */}
+              {data?.itemname3}
+              </Link>
             </li>
             <li className="text-sm lg:text-base font-semibold text-black leading-normal cursor-pointer">
-              <Link href="#contact_us">Contact Us</Link>
+              {/* <Link href="#contact_us"> */}
+              <Link href={data?.itemname4}>
+              {/* Contact Us */}
+              {data?.itemname4}
+              </Link>
             </li>
           </ul>
         </div>
