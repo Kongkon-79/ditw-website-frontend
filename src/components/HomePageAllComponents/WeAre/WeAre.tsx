@@ -153,7 +153,7 @@ const WeAre: React.FC<weAreProps> = ({ data, aboutUsSecondData }) => {
           </div>
 
           {/* Image/Video Section */}
-          <div className="sm:col-span-1 lg:col-span-4 ">
+          <div className="sm:col-span-1 lg:col-span-4">
             <div className=" top-1/4 xl:top-0 relative pb-[260px] md:pb-0">
               {/* Background Video */}
               <video
@@ -165,7 +165,8 @@ const WeAre: React.FC<weAreProps> = ({ data, aboutUsSecondData }) => {
                 playsInline
               >
                 <source
-                  src="https://res.cloudinary.com/dlph0bwik/video/upload/v1744520742/x6b705qdifzgq5kkngvd.mp4"
+                  // src="https://res.cloudinary.com/dlph0bwik/video/upload/v1744520742/x6b705qdifzgq5kkngvd.mp4"
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/AboutSec2/${aboutUsSecondData?.video}`}
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -174,7 +175,8 @@ const WeAre: React.FC<weAreProps> = ({ data, aboutUsSecondData }) => {
               {/* Optional overlay to improve text readability if you add content */}
               <div className="absolute inset-0 ">
                 <Image
-                  src="/assets/weAre/laptop.png"
+                  // src="/assets/weAre/laptop.png"
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/AboutSec2/${aboutUsSecondData?.img}`}
                   alt="Background"
                   width={700}
                   height={300}
